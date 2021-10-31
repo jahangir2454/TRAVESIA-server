@@ -49,6 +49,10 @@ async function run() {
             res.json(result)
             
         })
+        app.get('/oder', async (req, res) => {
+            const result = await myOderCollection.find({}).toArray();
+            res.json(result)
+        })
          // MY ODER UPDATE API
         app.put('/oders/:id', async (req, res) => {
             const id = req.params.id;
@@ -81,6 +85,14 @@ async function run() {
             res.json(result)
         })
        
+       app.delete('/odered/:id', async (req, res) => {
+           const id = req.params.id;
+           console.log(id)
+            const myid = { _id: ObjectId(id) }
+            const result = await myOderCollection.deleteOne(myid)
+           res.json(result)
+           console.log(result)
+        })
 
         // POST API
         app.post('/services', async (req, res) => {
