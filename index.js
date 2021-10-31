@@ -39,7 +39,6 @@ async function run() {
         app.post('/oder/:email', async (req, res) => {
             const result = await myOderCollection.insertOne(req.body)
             res.json(result)
-            console.log(req.body)
         })
         // MY ODER GET API
         app.get('/oder/:email', async (req, res) => {
@@ -58,7 +57,6 @@ async function run() {
             const id = req.params.id;
             const user = { _id: ObjectId(id) }
             const updateItem = req.body;
-            console.log(req.body)
             const options = { upsert: true };
              const updateDoc = {
             $set: {
@@ -70,7 +68,7 @@ async function run() {
             const result = await myOderCollection.updateOne(user, updateDoc, options)
             res.json(result)
         })
-        // 
+        // SERVICES API
         app.get('/oders/:id', async (req, res) => {
             const id = req.params.id;
             const user = { _id: ObjectId(id) }
@@ -84,14 +82,12 @@ async function run() {
             const result = await myOderCollection.deleteOne(myid)
             res.json(result)
         })
-       
+    //  ALL ODER MANAGE API
        app.delete('/odered/:id', async (req, res) => {
            const id = req.params.id;
-           console.log(id)
             const myid = { _id: ObjectId(id) }
             const result = await myOderCollection.deleteOne(myid)
            res.json(result)
-           console.log(result)
         })
 
         // POST API
